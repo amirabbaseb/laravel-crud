@@ -16,8 +16,4 @@ class Items extends Model
         'brand_id',
         'color_id'
     ];
-
-    public function label(){
-        return $this->belongsTo(Label::class);
-    }
 }

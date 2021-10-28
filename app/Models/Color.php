@@ -14,7 +14,7 @@ class Color extends Model
         'hex_code'
     ];
 
-    public function label(){
-        return $this->belongsTo(Label::class);
+    public function items(){
+        return $this->belongsTo(Items::class);
     }
 }

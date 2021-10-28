@@ -13,7 +13,7 @@ class Brand extends Model
         'name'
     ];
 
-    public function label(){
-        return $this->belongsTo(Label::class);
+    public function items(){
+        return $this->belongsTo(Items::class);
     }
 }
