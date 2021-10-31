@@ -15,7 +15,7 @@ class BrandController extends Controller
         return $brand;
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         // $validated = $request->validated();
         $validator = Validator::make($request->all(), [
@@ -27,7 +27,7 @@ class BrandController extends Controller
                 Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $newBrand = Brand::create([
+        $newBrand = Brand::query()->create([
             'name' => $request->name
         ]);
 
@@ -45,7 +45,7 @@ class BrandController extends Controller
                 Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $brand = Brand::find($id);
+        $brand = Brand::query()->find($id);
         $brand->update([
             "name" => $request->name
         ]);
@@ -54,7 +54,7 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand, $id)
     {
-        $brand = Brand::findOrFail($id);
+        $brand = Brand::query()->find($id);
         if ($brand)
             $brand->delete();
         else

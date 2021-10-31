@@ -15,7 +15,7 @@ class ItemsController extends Controller
         return $item;
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         // $validated = $request->validated();
         $validator = Validator::make($request->all(), [

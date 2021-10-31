@@ -16,4 +16,12 @@ class Items extends Model
         'brand_id',
         'color_id'
     ];
+
+    public function brand() {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function colors() {
+        return $this->belongsToMany(Color::class);
+    }
 }

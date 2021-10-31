@@ -15,7 +15,7 @@ class ColorController extends Controller
         return $color;
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         // $validated = $request->validated();
         $validator = Validator::make($request->all(), [
@@ -28,7 +28,7 @@ class ColorController extends Controller
                 Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $newColor = Color::create([
+        $newColor = Color::query()->create([
             'name' => $request->name
         ]);
 
@@ -47,7 +47,7 @@ class ColorController extends Controller
                 Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $color = Color::find($id);
+        $color = Color::query()->find($id);
         $color->update([
             "name" => $request->name,
             "hex_code" => $request->hex_code
@@ -57,7 +57,7 @@ class ColorController extends Controller
 
     public function destroy(Color $color, $id)
     {
-        $color = Color::findOrFail($id);
+        $color = Color::query()->findOrFail($id);
         if ($color)
             $color->delete();
         else
