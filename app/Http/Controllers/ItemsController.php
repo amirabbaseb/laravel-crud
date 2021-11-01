@@ -23,7 +23,6 @@ class ItemsController extends Controller
             'price' => 'required',
             'sub_name' => 'required|string',
             'brand_id' => 'required|string',
-            'color_id' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -31,12 +30,11 @@ class ItemsController extends Controller
                 Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $newItem = Items::create([
+        $newItem = Items::query()->create([
             'title' => $request->title,
             'price' => $request->price,
             'sub_name' => $request->sub_name,
             'brand_id' => $request->brand_id,
-            'color_id' => $request->color_id
         ]);
 
         return response()->json(["message" => "successfully created"], Response::HTTP_CREATED);
@@ -44,7 +42,7 @@ class ItemsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $item = Items::find($id);
+        $item = Items::query()->find($id);
         $item->update([
             "title" => $request->title,
             "price" => $request->price,
@@ -55,7 +53,7 @@ class ItemsController extends Controller
 
     public function destroy(Items $item, $id)
     {
-        $item = Items::findOrFail($id);
+        $item = Items::query()->findOrFail($id);
         if ($item)
             $item->delete();
         else
