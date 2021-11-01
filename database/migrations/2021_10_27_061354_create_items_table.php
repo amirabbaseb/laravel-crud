@@ -18,10 +18,13 @@ class CreateItemsTable extends Migration
             $table->string('title');
             $table->double('price');
             $table->string('sub_name');
-            $table->integer('brand_id');
+
+            $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
-            $table->integer('color_id');
-            $table->foreign('color_id')->references('id')->on('colors');
+
+//            $table->unsignedBigInteger('color_id');
+//            $table->foreign('color_id')->references('id')->on('colors');
+
             $table->timestamps();
         });
     }
